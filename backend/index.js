@@ -78,7 +78,7 @@ app.post('/signup', async (req, res) => {
   
       const token = jwt.sign({ email: newUser.email, id: newUser._id }, SECRET_KEY,{ expiresIn: "1h" });
 
-      res.status(201).json({ message: 'User created successfully',token: token });
+      res.status(201).json({ status:200,message: 'User created successfully',data:newUser,token: token });
     } catch (error) {
       console.error('Error creating user:', error);
       res.status(500).json({ error: 'Internal server error' });
@@ -103,7 +103,7 @@ app.post('/signup', async (req, res) => {
                 }
 
                 const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, SECRET_KEY,{ expiresIn: "1h" });
-                res.status(201).json({ user: existingUser,token: token });
+                res.status(201).json({ status:200,message: 'Login successfully',user: existingUser,token: token });
         } catch {
             const error =
                 new Error(
